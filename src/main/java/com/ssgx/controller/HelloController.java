@@ -1,11 +1,17 @@
 package com.ssgx.controller;
 
+import com.ssgx.entity.ShPlan;
+import com.ssgx.service.ShPlanService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by mac on 16/3/1.
@@ -14,18 +20,16 @@ import javax.annotation.Resource;
 @Controller
 public class HelloController {
 
-    @Resource(name = "mesJdbc")
-    private JdbcTemplate jdbcTemplate;
+    @Resource
+    private ShPlanService service;
 
     @RequestMapping("hello")
     @ResponseBody
-    public String hello() {
-        long plancode = jdbcTemplate.query("select top 1 plancode from sh_plan", resultSet -> {
-            if (resultSet.next())
-                return resultSet.getLong("plancode");
-            return null;
-        });
-        return plancode + "ss 方法" ;
+    public List<ShPlan> hello(@RequestParam(required = false,defaultValue = "0") int page,@RequestParam(required = false,defaultValue = "10") int size) {
+
+        Pageable pageable = new PageRequest(page,size);
+        return service.findAll(pageable).getContent();
+
     }
 
 
