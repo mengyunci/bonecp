@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mac on 16/3/1.
@@ -32,6 +34,12 @@ public class HelloController {
 
     }
 
+    @RequestMapping("/m")
+    public String welcome(Map<String, Object> model) {
+        model.put("time", new Date());
+        model.put("message", "hehe");
+        return "welcome";
+    }
 
 
     @Resource(name = "wbmJdbc")
