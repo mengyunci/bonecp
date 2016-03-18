@@ -25,7 +25,13 @@ public class HelloController {
     @Resource
     private ShPlanService service;
 
-    @RequestMapping("hello")
+
+    @RequestMapping("/")
+    public String index() {
+        return "welcome";
+    }
+
+    @RequestMapping("/hello")
     @ResponseBody
     public List<ShPlan> hello(@RequestParam(required = false,defaultValue = "0") int page,@RequestParam(required = false,defaultValue = "10") int size) {
 
