@@ -57,7 +57,7 @@
                     <td>&nbsp;</td>
                     <td id="error_info" class="display-none">错误提示：请输入密码</td>
                 </tr>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <#--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
 
                 <!--按钮-->
                 <tr class="tr-text">
