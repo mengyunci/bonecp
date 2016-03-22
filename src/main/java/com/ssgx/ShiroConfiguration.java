@@ -61,10 +61,13 @@ public class ShiroConfiguration {
      * @return
      */
     @Bean(name = "jdbcReaml")
-    public JdbcRealm getRealm(@Qualifier("wbm")DataSource wbm,PasswordMatcher matcher) {
+    public JdbcRealm getRealm(@Qualifier("wbm")DataSource wbm,PasswordMatcher matcher,EhCacheManager manager) {
         JdbcRealm realm = new JdbcRealm();
         realm.setDataSource(wbm);
         realm.setCredentialsMatcher(matcher);
+        // 查询用户的密码,不使用默认方式
+        realm.setAuthenticationQuery("select password from users where username = ? and enabled = 1");
+        realm.setCacheManager(manager);
         return realm;
     }
 
