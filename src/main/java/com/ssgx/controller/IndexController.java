@@ -60,7 +60,7 @@ public class IndexController {
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
             logger.debug("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-            return "redirect:/";
+            return "redirect:/index";
         } else {
             token.clear();
             return "redirect:/login?error";
@@ -71,6 +71,11 @@ public class IndexController {
     public String logout() {
         SecurityUtils.getSubject().logout();
         return "redirect:/login";
+    }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
     }
 
 
