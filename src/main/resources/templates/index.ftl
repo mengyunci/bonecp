@@ -47,7 +47,7 @@
 </div>
 
 <div data-options="region:'west',title:'West',collapsible:false" style="width:220px;"></div>
-<div data-options="region:'center'" style="padding:5px;background:#eee;"></div>
+<div id="panel_center" data-options="region:'center'" style="background:#eee;"></div>
 <div data-options="region:'south',collapsible:false,border:false" style="text-align: center">
     <span>WE  JUST  DO  WE  LIKE   ~~~~~  GO  AWAY  THE   COMPANY</span>
 </div>
