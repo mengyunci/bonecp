@@ -9,16 +9,18 @@ $(function() {
             center.panel('refresh','/');
         } else {
             var show = $(this).attr("show");
+            var modelId = $(this).attr("moduleId");
             var west = $('body').layout('panel','west');
             if (!west.size()) {
                 $("body").layout('add',{
                     title: show,
                     region: 'west',
                     width: 220,
-                    collapsible : false
+                    collapsible : false,
+                    href:'/menuview/' + modelId
                 });
             } else {
-                west.panel('setTitle',show);
+                west.panel('setTitle',show).panel('refresh','/menuview/' + modelId)
             }
             center.panel('clear');
         }

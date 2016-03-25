@@ -47,18 +47,4 @@ public class HelloController {
         return "welcome";
     }
 
-
-    @Resource(name = "wbmJdbc")
-    private JdbcTemplate wbm;
-
-    @RequestMapping("he")
-    @ResponseBody
-    public String he() {
-        long id = wbm.query("select top 1 id from base_menu", resultSet -> {
-            if (resultSet.next())
-                return resultSet.getLong("id");
-            return null;
-        });
-        return id + "";
-    }
 }

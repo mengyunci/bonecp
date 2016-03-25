@@ -1,5 +1,6 @@
 package com.ssgx.controller;
 
+import com.ssgx.service.ModuleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.PasswordService;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * Created by mac on 16/3/17.
@@ -21,6 +24,9 @@ import javax.annotation.Resource;
 public class IndexController {
 
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+
+    @Resource
+    private ModuleService service;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
@@ -74,7 +80,8 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public String index() {
+    public String index(Map<String,Object> model) {
+        model.put("modules",service.findModules());
         return "index";
     }
 

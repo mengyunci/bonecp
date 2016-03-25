@@ -1,12 +1,13 @@
 <#assign base=rc.contextPath/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <base id="base" href="${base}">
-	<script src="${base}/js/index.js"></script>
-    <link rel="stylesheet" href="${base}/css/mdc/style.css" />
-</head>
-<body>
+<#--<!DOCTYPE html>-->
+<#--<html lang="en">-->
+<#--<head>-->
+    <#--<base id="base" href="${base}">-->
+	<#--<script src="${base}/js/index.js"></script>-->
+    <#---->
+<#--</head>-->
+<#--<body>-->
+<link rel="stylesheet" href="${base}/css/mdc/style.css" />
 <div id="equipment_monitor_div">
     <div class="main">
         <!--上排设备名称-->
@@ -236,5 +237,5 @@
 </div>
 <script type="text/javascript" charset="utf-8" src="${base}/js/mdc/equipmentMonitor.js"></script>
 
-</body>
-</html>
+<#--</body>-->
+<#--</html>-->

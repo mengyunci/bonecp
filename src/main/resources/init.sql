@@ -268,3 +268,17 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-03-22 17:27:39
+DROP TABLE IF EXISTS `base_menu`;
+
+CREATE TABLE `mes`.`base_menu` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `createTime` VARCHAR(45) NULL,
+  `createUser` VARCHAR(45) NULL,
+  `iconCls` VARCHAR(45) NULL,
+  `text` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
+  `url` VARCHAR(45) NULL,
+  `prentId` INT NULL,
+  `moduleId` INT NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

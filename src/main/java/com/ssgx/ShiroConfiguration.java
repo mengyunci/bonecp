@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by mac on 16/3/21.
  */
-@Configuration
+//@Configuration
 public class ShiroConfiguration {
 
     @Bean

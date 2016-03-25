@@ -22,18 +22,24 @@
             <ul>
                 <li>
                     <a href="#"><img src="${base}/images/logo/shdzlogo.png" alt="至越机械"
-                                              style="width: 150px;height: 50px;"/></a>
+                                     style="width: 150px;height: 50px;"/></a>
                 </li>
             </ul>
         </div>
         <div id="navbar-1" class="navbar navbar-right">
             <ul>
-                <li><a index="index" href="#">首页</a></li>
-                <li><a show="系统管理" href="#">系统管理</a></li>
-                <li><a show="MES" href="#">MES</a></li>
-                <li><a show="质量管理" href="#">质量管理</a></li>
-                <li><a show="MDC" href="#">MDC</a></li>
-                <li><a show="用户管理" href="#">用户管理</a></li>
+            <li><a index="index" modelId="0" href="#">首页</a></li>
+                <#if modules??>
+            <#list modules as module>
+                <li><a show="${module.name}" moduleId="${module.id}" href="#">${module.name}</a></li>
+            </#list>
+                </#if>
+            <#--<li><a index="index" modelId="0" href="#">首页</a></li>-->
+            <#--<li><a show="系统管理" modelId="1" href="#">系统管理</a></li>-->
+            <#--<li><a show="MES" modelId="2" href="#">MES</a></li>-->
+            <#--<li><a show="质量管理" modelId="3" href="#">质量管理</a></li>-->
+            <#--<li><a show="MDC" modelId="4" href="#">MDC</a></li>-->
+            <#--<li><a show="用户管理" modelId="5" href="#">用户管理</a></li>-->
             </ul>
         </div>
         <div style="clear:both"></div>
