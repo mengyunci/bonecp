@@ -1,5 +1,7 @@
 package com.unknow.controller;
 
+import com.unknow.dao.BaseMenuRepository;
+import com.unknow.entity.BaseMenu;
 import com.unknow.entity.ShPlan;
 import com.unknow.service.ShPlanService;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,8 @@ public class HelloController {
     @Resource
     private ShPlanService service;
 
+    @Resource
+    private BaseMenuRepository baseMenuRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -46,4 +50,9 @@ public class HelloController {
         return "welcome";
     }
 
+    @RequestMapping("/bm")
+    @ResponseBody
+    public List<BaseMenu> bm() {
+        return (List<BaseMenu>) baseMenuRepository.findAll();
+    }
 }

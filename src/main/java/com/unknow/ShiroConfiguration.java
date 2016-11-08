@@ -6,7 +6,6 @@ import org.apache.shiro.authc.credential.PasswordMatcher;
 import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,14 +15,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.DispatcherType;
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by mac on 16/3/21.
  */
-@Configuration
+//@Configuration
 public class ShiroConfiguration {
 
     @Bean
@@ -36,7 +34,7 @@ public class ShiroConfiguration {
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean filter = new FilterRegistrationBean();
-        filter.setFilter(new DelegatingFilterProxy("shrioFilter"));
+        filter.setFilter(new DelegatingFilterProxy("shiroFilter"));
         filter.addInitParameter("targetFilterLifecycle","true");
         filter.setEnabled(true);
         filter.addUrlPatterns("/*");
@@ -52,6 +50,10 @@ public class ShiroConfiguration {
     public UserRealm getUserRealm(PasswordMatcher matcher, EhCacheManager manager) {
         UserRealm realm = new UserRealm();
         realm.setCacheManager(manager);
+        realm.setAuthenticationCachingEnabled(true);
+        realm.setAuthenticationCacheName("authenticationCache");
+        realm.setAuthorizationCachingEnabled(true);
+        realm.setAuthorizationCacheName("authorizationCache");
         realm.setCredentialsMatcher(matcher);
         return realm;
     }
@@ -65,7 +67,7 @@ public class ShiroConfiguration {
         return manager;
     }
 
-    @Bean(name = "shrioFilter")
+    @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean getShrioFilterBean(DefaultWebSecurityManager manager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(manager);
@@ -90,7 +92,7 @@ public class ShiroConfiguration {
 
     }
 
-    // 密码加密服务,目前使用Shrio提供的默认方式,后期可以改为配置方式
+    // 密码加密服务,目前使用Shiro提供的默认方式,后期可以改为配置方式
     @Bean
     public PasswordService getPasswordService() {
         return new DefaultPasswordService();

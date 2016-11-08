@@ -1,7 +1,7 @@
 package com.unknow.realm;
 
+import com.unknow.dao.UserRepository;
 import com.unknow.entity.User;
-import com.unknow.mapper.UserMapper;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -14,8 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserMapper userMapper;
-
+    private UserRepository userRepository;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -25,17 +24,46 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();
-        User user =  userMapper.selectPassAndStatus(username);
+        User user = userRepository.findByUsername(username);
+
 
         if (user == null) {
             throw new UnknownAccountException();
         }
 
-        if (user.getStatus() == 0 ){
+        if (user.getStatus() == 0) {
             throw new LockedAccountException();
         }
 
-        return new SimpleAuthenticationInfo(username,user.getLoginPassword(),getName());
+        return new SimpleAuthenticationInfo(username, user.getPassword(), getName());
 
+    }
+
+    @Override
+    protected void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+    }
+
+    @Override
+    protected void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthenticationInfo(principals);
+    }
+
+    @Override
+    protected void clearCache(PrincipalCollection principals) {
+        super.clearCache(principals);
+    }
+
+    public void clearAllCachedAuthorizationInfo() {
+        getAuthorizationCache().clear();
+    }
+
+    public void clearAllCachedAuthenticationInfo() {
+        getAuthenticationCache().clear();
+    }
+
+    public void clearAllCache() {
+        clearAllCachedAuthenticationInfo();
+        clearAllCachedAuthorizationInfo();
     }
 }
