@@ -31,7 +31,7 @@ public class UserRealm extends AuthorizingRealm {
             throw new UnknownAccountException();
         }
 
-        if (user.getStatus() == 0) {
+        if (!user.getEnabled()) {
             throw new LockedAccountException();
         }
 

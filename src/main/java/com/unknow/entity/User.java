@@ -21,7 +21,7 @@ public class User implements Serializable {
 
     private Boolean enabled;
 
-    private Integer status;
+//    private Integer status;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,11 +60,11 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+//    public Integer getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Integer status) {
+//        this.status = status;
+//    }
 }

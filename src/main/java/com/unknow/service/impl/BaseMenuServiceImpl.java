@@ -32,9 +32,7 @@ public class BaseMenuServiceImpl implements BaseMenuService {
             if (m.getPrentId() == null) {
                 pMenu.put(m.getId(), m);
             } else {
-                if (cMenu.get(m.getPrentId()) == null) {
-                    cMenu.put(m.getPrentId(), new ArrayList<>());
-                }
+                cMenu.putIfAbsent(m.getPrentId(), new ArrayList<>());
                 cMenu.get(m.getPrentId()).add(m);
             }
         });
