@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="${base}/css/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="${base}/css/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${base}/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${base}/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${base}/css/basic/main.css">
     <link rel="stylesheet" type="text/css" href="${base}/css/basic/kube.css">
-    <script type="text/javascript" src="${base}/js/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="${base}/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${base}/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="${base}/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${base}/js/common.js"></script>
 </head>
 <body class="easyui-layout">
