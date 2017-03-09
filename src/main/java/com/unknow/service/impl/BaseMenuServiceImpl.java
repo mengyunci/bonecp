@@ -41,4 +41,23 @@ public class BaseMenuServiceImpl implements BaseMenuService {
 
         return pMenu.values().stream().collect(Collectors.toList());
     }
+    
+//    private List<Menu> getChildren(List<Menu> result,String rootId ) {
+//        List<Menu> r = new ArrayList<>();
+//        for (int i = 0; i < result.size(); i++) {
+//            Menu t = result.get(i);
+//            if (rootId.equals(t.getParentId())) {
+//                List<Menu> children = getChildren(result,t.getId());
+//
+//                if (!children.isEmpty()) {
+//                    t.setChildren(children);
+//                } else {
+//                    t.setLeaf(true);
+//                }
+//                r.add(t);
+//            }
+//        }
+//        return r;
+//    }
+    
 }
